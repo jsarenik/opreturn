@@ -1,6 +1,12 @@
 # opreturn
 Shell scripts that operate 0x51 P2SH and LN Anchor keyless addresses.
 
+## Dependencies
+
+ - curl
+ - jq
+ - mempool.space
+
 ## Usage
 
 Works on Testnet3, Testnet4 and Signet so far.
