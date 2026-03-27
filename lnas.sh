@@ -12,12 +12,14 @@ t=$(curl -sSL \
   "$url/address/tb1pfees9rn5nz/utxo" \
   | jq -r ".[] | .txid, .vout, .value" \
   | paste -d " " - - - \
-  | awklist-allfee.sh -m "$1" \
-  | mktx.sh | crt.sh)
+  | head -2 \
+  | ./awklist-allfee.sh -m "$*" \
+  | ./mktx.sh | ./crt.sh)
 
 echo $t #| nd-all.sh
 echo $t \
-  | curl -X POST -sSLd @- "$url/tx"
+  | curl -X POST -sSLd @- "$url/tx" \
+  | grep .
 }
 
 doit $1 $2
